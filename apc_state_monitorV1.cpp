@@ -17,57 +17,6 @@ Few items to review:
 #include <message_filters/time_synchronizer.h>
 #include <std_msgs/Float32.h>
 
-// class stateMonitor
-// {
-// public:
-// 	stateMonitor();
-
-// private:
-// 	ros::NodeHandle nh;
-
-// 	// the results that will be published to the topic
-// 	bool labjackOk, kinectOk, abbOk;
-
-// 	int timeThresh = 1000; // Threshold for allowable time delay between topic publications
-
-// 	// Topics that we want to watch for normal operation
-// 	// TODO: Update These Topics
-// 	static const string labJackTopic = "/";
-// 	static const string kinectTopic = "/camera/rgb";
-// 	static const string abbTopic = "/";
-
-// 	static const string labJackParam = "/state/labjack_operating";
-// 	static const string kinectParam = "/state/kinect_operating";
-// 	static const string abbParam = "/state/abb_operating";
-
-// 	// Subscriber node handle -> switched to message event
-// 	//ros::Subscriber state_sub;
-// 	// See section 2.4 of : http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers
-// 	ros::MessageEvent state_event;
-// };
-
-
-// See section 2.4 of : http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers
-// void callback(const ros::MessageEvent<std_msgs::String const>& event)
-// {
-//   //const std::string& publisher_name = event.getPublisherName();
-//   //const ros::M_string& header = event.getConnectionHeader();
-//   ros::Time receipt_time = event.getReceiptTime();
-//   if current_time - receipt_time > timeThresh
-//   	return FALSE
-//   else
-//   	return TRUE
-
-//   //const std_msgs::StringConstPtr& msg = event.getMessage();
-// }
-
-// Subscriber node handle -> switched to message event
-	//ros::Subscriber state_sub;
-	// See section 2.4 of : http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers
-	// ros::MessageEvent state_event;
-
-
-
 // See section 2.4 of : http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers
 void labjackCallback(const ros::MessageEvent<std_msgs::String const>& event)
 {
@@ -81,11 +30,6 @@ void labjackCallback(const ros::MessageEvent<std_msgs::String const>& event)
 
   //const std_msgs::StringConstPtr& msg = event.getMessage();
 }
-
-
-
-
-
 
 
 
@@ -110,9 +54,7 @@ int main(int argc, char** argv)
 	const string kinectParam = "/state/kinect_operating";
 	const string abbParam = "/state/abb_operating";
 
-	
-	// ros::Subscriber sub = nh.subscribe(labJackTopic, 1, callback)
-
+	// Listen to topics and run callback function for each
 	nh.subscribe<Float32>(labJackTopic, 1, labjackCallback);
 
 	

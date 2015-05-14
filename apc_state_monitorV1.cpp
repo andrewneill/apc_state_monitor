@@ -26,9 +26,9 @@ void labjackCallback(const ros::MessageEvent<std_msgs::Float32 const>& event)
 {
   ros::Time receipt_time = event.getReceiptTime();
   if (ros::Time::now() - receipt_time > timeThresh)
-  	nh.setParam(labJackParam, TRUE);
+  	nh.setParam(labJackParam, true);
   else
-  	nh.setParam(labJackParam, FALSE);
+  	nh.setParam(labJackParam, false);
 
   //nh.setParam(labJackParam, (bool)(current_time - receipt_time > timeThresh));
 
